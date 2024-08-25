@@ -1,1 +1,47 @@
-<p>slider works!</p>
+<div class="text-center" style="margin-top: 100px;">
+  <h1>Products</h1>
+</div>
+<div id="multiItemCarousel" class="carousel slide" data-bs-ride="carousel" >
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="row">
+        <ng-container *ngFor="let product of products.slice(0, 4)">
+          <div class="col-md-3">
+            <div class="card mb-4">
+              <img [src]="product.src" class="card-img-top" alt="{{ product.title }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.title }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <ng-container *ngFor="let slide of getSlides(); let i = index">
+      <div class="carousel-item" [class.active]="i === 0">
+        <div class="row">
+          <ng-container *ngFor="let product of products.slice(i * 4, (i + 1) * 4)">
+            <div class="col-md-3">
+              <div class="card mb-4">
+                <img [src]="product.src" class="card-img-top" alt="{{ product.title }}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ product.title }}</h5>
+                  <p class="card-text">{{ product.description }}</p>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
